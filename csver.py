@@ -64,8 +64,8 @@ class CSVer:
         distinct_items = self.get_distinct_rows(CSVer.ITEMS_COLUMN)
         item = np.random.choice(distinct_items)
         self.plot_item_value_along_time(item)
-        
-name = 'solicitado_small.csv'
-n = 1000
-csver = CSVer(file_name = name, nrows = n)
-csver.plot_random_item_value_along_time()
+       
+if __name__ == '__main__':
+    csv_file_name = 'solicitado_small.csv'
+    csver = CSVer(file_name = csv_file_name)
+    csver.plot_random_item_value_along_time()
