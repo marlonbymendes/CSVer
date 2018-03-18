@@ -1,0 +1,5 @@
+*.swp
+*.pyc
+*.csv
+.idea*
+.ipynb_checkpoints
