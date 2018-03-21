@@ -43,6 +43,18 @@ class CSVer:
         item = np.random.choice(distinct_items)
         return item
 
+    def get_x_y(self, x_column, y_column, filter = None, csv_pos = 0):
+        rows = None
+        if filter is not None:
+            column, value = filter
+            rows = self.filter_column_by_value(column, value, csv_pos)
+        else:
+            rows = self.csvs[csv_pos]
+        
+        x = rows[x_column]
+        y = rows[y_column]
+        return (x, y)
+
 if __name__ == '__main__':
     solicitado = 'solicitado_small.csv'
     aprovado = 'aprovado_small.csv'
