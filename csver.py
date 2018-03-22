@@ -76,7 +76,7 @@ class CSVer:
         rows = self.filter_column_by_value(CSVer.ITEMS_COLUMN, item)
         x = csver.get_date_axis_from_column(data_frame = rows, column = CSVer.DATES_COLUMN)
         y = rows[CSVer.VALUES_COLUMN].values
-        csver.plot_histogram(y, 'Data (dia/mes/ano)', 'Valor unitário solicitado (R$)', item)
+        self.plot_y_axis_along_time(x, y, 'Data (dia/mes/ano)', 'Valor unitário solicitado (R$)', item)
         print('Ploting item \"{}\"...'.format(item))
     
     def plot_random_item_value_along_time(self):
