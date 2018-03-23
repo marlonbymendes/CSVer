@@ -1,9 +1,7 @@
 import matplotlib
 import matplotlib.pyplot as plt
-from IPython.display import display
 
 from csver import CSVer
-from datetime import datetime
 
 import warnings
 import matplotlib.cbook
@@ -25,15 +23,11 @@ class Plotter:
         plt.xlabel(x_label)
         plt.ylabel(y_label)
         plt.title(title)
-    
-    def get_date_axis_from_array(self, dates):
-        dates_date_time = [datetime.strptime(d, CSVer.DATE_INPUT_FORMAT) for d in dates]
-        dates_axis = matplotlib.dates.date2num(dates_date_time)
-        return dates_axis
-        
-    def plot_scatter_along_time(self, x_axis, y_axis, x_label = '',
-                               y_label = '', title = '', subplot = 111,
-                     figure = None):
+
+    def plot_scatter_along_time(self, x_axis, y_axis, color = None, x_label = '',
+                               y_label = '', title = '', marker = 'o', subplot = 111,
+                               figure = None):
+
         if figure is None:
             figure = plt.figure()
             
@@ -41,24 +35,18 @@ class Plotter:
         ax = figure.add_subplot(subplot)
         ax.xaxis.set_major_formatter(hfmt)
         plt.setp(ax.get_xticklabels(), rotation=15)
-        plt.scatter(x_axis, y_axis, s = 50, c = 'blue', alpha = 0.25)
+        plt.scatter(x_axis, y_axis, s = 50, c = color, alpha = 0.50, marker = marker)
         
         self.set_plot_style(x_label, y_label, title)
 
-        ax = figure.add_subplot(1,2,2)
-        ax.xaxis.set_major_formatter(hfmt)
-        plt.setp(ax.get_xticklabels(), rotation=15)
-        plt.semilogy(x_axis, y_axis, '.')
-        self.set_plot_style(x_label, y_label, title)
-        
-    
+
     def plot_log_along_time(self, x_axis, y_axis, x_label = '', y_label = '',
                  title = '', subplot = 111, figure = None):
         if figure is None:
             figure = plt.figure()
         
         hfmt = matplotlib.dates.DateFormatter(CSVer.DATE_GRAPH_FORMAT)    
-        ax = figure.add_subplot(1,2,2)
+        ax = figure.add_subplot(subplot)
         ax.xaxis.set_major_formatter(hfmt)
         plt.setp(ax.get_xticklabels(), rotation=15)
         plt.semilogy(x_axis, y_axis, '.')
@@ -73,6 +61,8 @@ class Plotter:
         self.plot_log_along_time(x_axis, y_axis, x_label, y_label,
                                  title, subplot = 122,
                                  figure = figure)
+
+
         
     def show(self):
         plt.show()

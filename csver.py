@@ -16,7 +16,7 @@ class CSVer:
     DATE_OUTPUT_FORMAT = '%m/%Y'
     DATE_GRAPH_FORMAT = DATE_OUTPUT_FORMAT
     
-    def __init__(self, csv_names, nrows = None):
+    def __init__(self, csv_names):
         self.csvs = list(map(pd.read_csv, csv_names))
 
     def get_distinct_rows(self, column_name, csv_pos = 0):
@@ -54,6 +54,11 @@ class CSVer:
         x = rows[x_column]
         y = rows[y_column]
         return (x, y)
+
+    def get_date_axis_from_array(self, dates):
+        dates_date_time = [datetime.strptime(d, CSVer.DATE_INPUT_FORMAT) for d in dates]
+        dates_axis = matplotlib.dates.date2num(dates_date_time)
+        return dates_axis
 
 if __name__ == '__main__':
     solicitado = 'solicitado_small.csv'
