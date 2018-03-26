@@ -63,9 +63,14 @@ class SalicPlotter:
 
         fig = plt.figure()
         plotter = Plotter()
-        plotter.plot_log_along_time(x1, y1, figure=fig)
-        plotter.plot_log_along_time(x2, y2, 'Data (dia/mes/ano)',
-                                        'Custo Unitário (R$)', item, figure=fig)
+
+        red_patch = mpatches.Patch(color='red', label='Solicitado')
+        green_patch = mpatches.Patch(color='green', label='Aprovado')
+        plt.legend(handles=[red_patch, green_patch])
+
+        plotter.plot_log_along_time(x1, y1, '.r', figure=fig)
+        plotter.plot_log_along_time(x2, y2, '.g', 'Data (dia/mes/ano)', 'Custo Unitário (R$)',
+                                    item, figure=fig)
         plotter.show()
 
 small_data = ['solicitado_small.csv', 'aprovado_small.csv']
@@ -75,4 +80,4 @@ sp = SalicPlotter(big_data)
 
 while True:
     item = sp.csver.get_random_item(SalicPlotter.ITEM_COLUMN)
-    sp.plot_requested_vs_approved(item)
+    sp.plot_requested_vs_approved_log(item)

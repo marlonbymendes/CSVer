@@ -40,7 +40,7 @@ class Plotter:
         self.set_plot_style(x_label, y_label, title)
 
 
-    def plot_log_along_time(self, x_axis, y_axis, x_label = '', y_label = '',
+    def plot_log_along_time(self, x_axis, y_axis, format, x_label = '', y_label = '',
                  title = '', subplot = 111, figure = None):
         if figure is None:
             figure = plt.figure()
@@ -49,7 +49,7 @@ class Plotter:
         ax = figure.add_subplot(subplot)
         ax.xaxis.set_major_formatter(hfmt)
         plt.setp(ax.get_xticklabels(), rotation=15)
-        plt.semilogy(x_axis, y_axis, '.')
+        plt.semilogy(x_axis, y_axis, format)
         self.set_plot_style(x_label, y_label, title)
     
     def plot_scatter_log_along_time(self, x_axis, y_axis, x_label = '',
