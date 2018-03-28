@@ -51,8 +51,8 @@ class CSVer:
         else:
             rows = self.csvs[csv_pos]
         
-        x = rows[x_column]
-        y = rows[y_column]
+        x = np.array(rows[x_column].values)
+        y = np.array(rows[y_column].values)
         return (x, y)
 
     def get_date_axis_from_array(self, dates):
