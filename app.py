@@ -80,4 +80,4 @@ sp = SalicPlotter(big_data)
 
 while True:
     item = sp.csver.get_random_item(SalicPlotter.ITEM_COLUMN)
-    sp.plot_requested_vs_approved_log(item)
+    sp.plot_requested_vs_approved(item)
