@@ -12,7 +12,6 @@ class Plotter:
 
     def plot_histogram(self, y_axis, x_label = '', y_label = '', title = ''):
         fig = plt.figure()
-        ax = fig.add_subplot(1,1,1)
         self.set_plot_style(x_label, y_label, title)
         
         result = plt.hist(y_axis, bins = 'fd', color = 'blue',
